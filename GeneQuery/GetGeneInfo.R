@@ -32,6 +32,7 @@
 # load bioconductor gene query library
 library(mygene)
 
+
 # Get command line arguements (first is gene symbol and second is the path to same the json output text file)
 args = commandArgs(trailingOnly=TRUE)
 geneSymbol = args[1]

@@ -17,6 +17,7 @@ import os
 # Define command and arguments
 command = 'Rscript'
 
+#dir_path = "C:\\DePaulCoursework\\Research\\Code"
 dir_path = os.path.dirname(os.path.realpath(__file__))
 script_path = dir_path + '\\GetGeneInfo.R'
 

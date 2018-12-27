@@ -3,7 +3,7 @@ library(Seurat)
 library(dplyr)
 library(Matrix)
 
-dataPath = "C:\\DePaulCoursework\\Research\\SatijaLabExamples\\filtered_gene_bc_matrices\\hg19"
+dataPath = "C:\\DePaulCoursework\\Research\\Known_Examples\\Satija_Example_PBMC_4K\\hg19"
 
 # Load the PBMC dataset
 pbmc.data <- Read10X(data.dir = dataPath)
