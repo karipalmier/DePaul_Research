@@ -121,22 +121,6 @@ if (save_hist == "TRUE"){
 }
 
 
-#################### Create Adjacency Matrix and DataFrame #########################################################
-
-num_nodes = vcount(bicluster_filter_prop)
-filtered_adj_filename = paste(base_name, "_", num_nodes, "_Nodes_Adj_Matrix.csv")
-bicluster_filter_mat = as.matrix(get.adjacency(bicluster_filter_prop, type = "both", names = TRUE, attr = "weight"))
-bicluster_filter_df = as.data.frame(bicluster_filter_mat)
-
-write.csv(bicluster_filter_df, file = filtered_adj_filename)
-
-if (save_graphml == "TRUE"){
-  graphml_filename = paste(base_name, "_EdgeWs_", min_edge, "to", max_edge, ".graphml", sep = "")
-  write_graph(bicluster_filter_prop, graphml_filename, format = "graphml")
-  
-}
-
-
 ############################ Find Modularity Communities ############################################################
 
 cluster_filter_names = V(bicluster_filter_prop)$name
@@ -189,6 +173,30 @@ for (i in 1:num_comps){
   
 }
 
+V(bicluster_filter_prop)$louvain_mod = cluster_filter_louvain
+V(bicluster_filter_prop)$leade_mod = cluster_filter_leade
+V(bicluster_filter_prop)$fastg_mod = cluster_filter_fastg
+V(bicluster_filter_prop)$ebetw_mod = cluster_filter_ebetween
+
+
+#################### Create Adjacency Matrix and DataFrame #########################################################
+
+num_nodes = vcount(bicluster_filter_prop)
+filtered_adj_filename = paste(base_name, "_", num_nodes, "_Nodes_Adj_Matrix.csv")
+bicluster_filter_mat = as.matrix(get.adjacency(bicluster_filter_prop, type = "both", names = TRUE, attr = "weight"))
+bicluster_filter_df = as.data.frame(bicluster_filter_mat)
+
+write.csv(bicluster_filter_df, file = filtered_adj_filename)
+
+if (save_graphml == "TRUE"){
+  graphml_filename = paste(base_name, "_EdgeWs_", min_edge, "to", max_edge, ".graphml", sep = "")
+  write_graph(bicluster_filter_prop, graphml_filename, format = "graphml")
+  
+}
+
+
+#################### Return Node Attribute Information #############################################################
+
 # Create list of node attributes
 node_attrs = list(names = cluster_filter_names,
                   wdegree_cent = cluster_filter_wdeg,
@@ -203,7 +211,6 @@ jsonData = jsonlite::toJSON(node_attrs, pretty = TRUE)
 
 # Print combined output JSON to Python
 print(jsonData)
-
 
 
 
