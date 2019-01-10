@@ -35,7 +35,8 @@ def get_cluster_statistics(data_folder):
         ngene_min = float(name_lst[name_lst.index("ngene") + 2])
         mito_max = float(name_lst[name_lst.index("percmito") + 1])
         mito_min = float(name_lst[name_lst.index("percmito") + 2])
-        pcas = float(name_lst[name_lst.index("pcas") + 1])
+#        pcas = float(name_lst[name_lst.index("pcas") + 1])
+        pcas = 20
         cdims = float(name_lst[name_lst.index("cdims") + 1].split('.')[0])
                
         file_name = data_folder + "\\" + file

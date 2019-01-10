@@ -121,6 +121,7 @@ for (i in 1:length(geneList)){
     # create list of select gene information we want
     temp_go = temp_gene[[1]]$go
     
+    # Populate initial dataframe with BP information
     if (length(temp_go$BP) > 0){
       
       if (is.null(temp_go$BP$id)){
@@ -141,6 +142,7 @@ for (i in 1:length(geneList)){
       }
     }
     
+    # Populate initial dataframe with CC information
     if (length(temp_go$CC) > 0){
       
       if (is.null(temp_go$CC$id)){
@@ -161,6 +163,7 @@ for (i in 1:length(geneList)){
       }
     }
       
+    # Populate initial dataframe with MF information
     if (length(temp_go$MF) > 0){
       
       if (is.null(temp_go$MF$id)){
@@ -191,6 +194,7 @@ uniq_terms = unique(gene_go_df$id)
 num_total_terms = length(gene_go_df$id)
 num_uniq_terms = length(uniq_terms)
 
+# Create output dataframes to be populated
 enriched_bp_df = data.frame(id = character(), term = character(), pvalue = numeric(), 
                          genes = character(), num_genes = numeric(), term_count = numeric(),
                          stringsAsFactors = FALSE)
@@ -219,6 +223,7 @@ for (z in 1:num_uniq_terms){
   uniq_genes = unique(gene_go_df$gene[term_ndx])
   num_genes = length(uniq_genes)
   
+  # Perform hypergeometric test
   term_pval = min(1 - cumsum(dhyper(0:(num_genes - 1), num_random, total_pop, num_sample_genes)))
   
   for (w in 1:length(uniq_genes)){
