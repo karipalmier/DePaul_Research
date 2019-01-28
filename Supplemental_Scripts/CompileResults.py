@@ -47,8 +47,12 @@ def get_cluster_statistics(data_folder):
         cluster_nums = pd.unique(temp_df["cluster"])
         num_clusters = len(cluster_nums)
         
-        cluster_sizes = []
-        cluster_sizes = [len(temp_df[temp_df["cluster"] == i]) for i in cluster_nums]
+        if len(cluster_nums) == 0:
+            cluster_sizes = [0]
+        else:
+            cluster_sizes = []
+            cluster_sizes = [len(temp_df[temp_df["cluster"] == i]) for i in cluster_nums]
+        
         cluster_sizes = np.array(cluster_sizes)
         
         min_cluster_size = np.min(cluster_sizes)
@@ -83,8 +87,7 @@ def get_elapsed_times(log_file):
         if not line:
             break
         
-        if line.find("Current Number of PCA PCs") >= 0:
-            pcas = float(line.strip().split(':')[1])
+        pcas = 20
         if line.find("Current Number of Cluster Dimensions") >= 0:
             cdims = float(line.strip().split(':')[1])
         if line.find("Current NGene Upper Limit") >= 0:

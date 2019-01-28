@@ -91,8 +91,8 @@ def perform_bicluster(R_dir_path = default_dir, sig_level = 0.05,
         curr_datetime_str = get_current_time()
         output_cluster_path = cluster_inter_path + curr_datetime_str + \
         "_res_" + str(res_level) + "_test_" + test_type + \
-        "_ngene_" + str(ngene_ul) + "_" + str(ngene_ll) + "_mito_" + \
-        str(perc_mito_ul) + \
+        "_ngene_" + str(ngene_ul) + "_" + str(ngene_ll) + "_percmito_" + \
+        str(perc_mito_ul) + str(perc_mito_ll) + \
         "_cdims_" + str(num_cluster_dims) + ".csv"
         gene_cluster_df.to_csv(output_cluster_path, header = True, 
                                index = True)

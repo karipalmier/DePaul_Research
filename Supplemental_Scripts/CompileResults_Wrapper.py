@@ -17,18 +17,13 @@ from CompileResults import get_elapsed_times
 from CompileResults import combine_results_times
 from CompileResults import get_summary_results
 
-base_path = "C:\\DePaulCoursework\\Research\\Known_Examples\\Bryan_WebLink_PBMC_4K\\20181010_22_56_36_Bicluster_Results\\"
-#base_path = "C:\\DePaulCoursework\\Research\\Known_Examples\\Bryan_WebLink_PBMC_4K\\2018103_21_1_17_Bicluster_Results\\"
-#base_path = "C:\\DePaulCoursework\\Research\\Known_Examples\\Bryan_WebLink_Mouse_Neurons\\20181020_11_34_42_Bicluster_Results\\"
-#base_path = "C:\\DePaulCoursework\\Research\\Known_Examples\\Bryan_WebLink_Mouse_Neurons\\20181018_15_52_16_Bicluster_Results\\"
+base_path = "C:\\DePaulCoursework\\Research\\BryanExample\\20180627_Sample1_Infected\\2019127_14_48_8_Bicluster_Results\\"
 
 data_path = base_path + "Temp\\"
 stat_df = get_cluster_statistics(data_path)
 
-log_file = base_path + "20181010_22_56_36_Bicluster_Log.txt"
-#log_file = base_path + "2018103_21_1_17_Bicluster_Log.txt"
-#log_file = base_path + "20181020_11_34_42_Bicluster_Log.txt"
-#log_file = base_path + "20181018_15_52_16_Bicluster_Log.txt"
+log_file = base_path + "2019127_14_48_8_Bicluster_Log.txt"
+
 time_df = get_elapsed_times(log_file)
 
 results_df = combine_results_times(stat_df, time_df)
